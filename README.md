@@ -16,7 +16,7 @@ scripts/check.sh
 ## Build the runtime image
 
 ```sh
-docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya29.2 .
+docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya29.3 .
 ```
 
 The build intentionally fails if any patched upstream template differs from

@@ -17,7 +17,7 @@ EXPECTED = {
     "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17",
 }
 
-SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.2"
+SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.3"
 
 BASE_STYLES = """  {% if rtl %}
   <link rel="stylesheet" href="{{ url_for('static', filename='sxng-rtl.min.css') }}" type="text/css" media="screen">
