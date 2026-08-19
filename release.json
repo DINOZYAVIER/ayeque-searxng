@@ -1,0 +1,34 @@
+{
+  "schema": "ayeque.searxng_theme_release.v2",
+  "theme_revision": "aya29.1",
+  "release_tag": "v2026.3.29-aya29.1",
+  "image_tag": "ayeque-searxng:2026.3.29-7ac4ff39f-aya29.1",
+  "public_source": {
+    "repository": "https://github.com/dinozyavier/ayeque-searxng",
+    "release": "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.1",
+    "archive_name": "ayeque-searxng-v2026.3.29-aya29.1-source.tar.gz"
+  },
+  "upstream": {
+    "image": "searxng/searxng@sha256:4d7ed8b7035ecf827bd901ba6d32f5c32d8119bc09bb3cdafeb0ce58f1b951c1",
+    "image_id": "sha256:4d7ed8b7035ecf827bd901ba6d32f5c32d8119bc09bb3cdafeb0ce58f1b951c1",
+    "version": "2026.3.29+7ac4ff39f",
+    "revision": "7ac4ff39fee4cdde223dbab6a83af9c26b56366e",
+    "source_archive_url": "https://github.com/searxng/searxng/archive/7ac4ff39fee4cdde223dbab6a83af9c26b56366e.tar.gz",
+    "source_archive_sha256": "0a99d5cb8fbd8b141507d7fa8d098cfdc5b6ee676ea2ae2825a8280a9b957073"
+  },
+  "template_preimages": {
+    "simple/base.html": "6e70d235e7297a32c223441ce2e22a7f2569959d164f251c4c4ead00907ac40d",
+    "simple/index.html": "91d2065c452099c023ab1910885bacdab9aed6dc049e954bf1ac96eca679fd96",
+    "simple/page_with_header.html": "5cfc88b74e55b22b7d69be53e6fb2b88991203d7ea6b699b55009ee06246c9dc",
+    "simple/search.html": "5544f212c49bf5d1a3eb5dc664985f69ca6650d60db644b11d08fc61e99336d5",
+    "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17"
+  },
+  "derived_image_id": "sha256:2fcfdfcfa066dd53dd2ad461081b805336b7640093bbdc4147f42d0b643f8d8c",
+  "assets": {
+    "ayeque.css": "6fc19fb0394d42b00764b2a086f1f912b41980d64c4c780773a7ec2659524f30",
+    "ayeque-logo.webp": "4246628b04ec51ed9497d898c20c471ee29f0097bd07c421769b193ae3e24f21",
+    "favicon.png": "b4539f3fe554c38023665fcaac5df6b45a9c218b9065fca3b6427eb62b9dff08",
+    "192.png": "eb8614685463be9c2a5f5f8c793513ab8297e16077332266889dc7a5c8ce8e53",
+    "512.png": "0f79ba4c555e7bb1e5f0c436bc3d79c98117d0efc6f6440a328c14cf20fd53f1"
+  }
+}

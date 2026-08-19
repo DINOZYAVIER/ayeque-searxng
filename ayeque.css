@@ -1,0 +1,456 @@
+/* AYEQUE theme for SearXNG 2026.3.29+7ac4ff39f. */
+:root,
+:root.theme-auto,
+:root.theme-light,
+:root.theme-dark,
+:root.theme-black {
+  color-scheme: dark;
+
+  --ayeque-bg: #262626;
+  --ayeque-surface: #2d2d2d;
+  --ayeque-surface-raised: #404040;
+  --ayeque-border: #525252;
+  --ayeque-copy: #fee2e2;
+  --ayeque-copy-muted: rgba(254, 226, 226, 0.68);
+  --ayeque-pink: #ec4899;
+  --ayeque-pink-soft: #f9a8d4;
+  --ayeque-fuchsia: #c026d3;
+
+  --color-base-background: var(--ayeque-bg);
+  --color-base-background-mobile: var(--ayeque-bg);
+  --color-base-font: var(--ayeque-copy);
+  --color-base-font-rgb: 254, 226, 226;
+  --color-header-background: var(--ayeque-bg);
+  --color-header-border: var(--ayeque-border);
+  --color-footer-background: var(--ayeque-bg);
+  --color-footer-border: var(--ayeque-border);
+  --color-search-background: rgba(64, 64, 64, 0.72);
+  --color-search-background-hover: rgba(64, 64, 64, 0.9);
+  --color-search-border: var(--ayeque-border);
+  --color-search-font: var(--ayeque-copy);
+  --color-search-shadow: 0 14px 34px rgba(10, 10, 10, 0.22);
+  --color-autocomplete-background: var(--ayeque-surface-raised);
+  --color-autocomplete-background-hover: rgba(236, 72, 153, 0.13);
+  --color-autocomplete-border: var(--ayeque-border);
+  --color-autocomplete-font: var(--ayeque-copy);
+  --color-autocomplete-shadow: 0 16px 34px rgba(10, 10, 10, 0.3);
+  --color-btn-background: var(--ayeque-pink);
+  --color-btn-font: #26121c;
+  --color-categories-item-border-selected: var(--ayeque-pink);
+  --color-categories-item-selected-font: var(--ayeque-pink-soft);
+  --color-result-background: rgba(45, 45, 45, 0.78);
+  --color-result-border: var(--ayeque-border);
+  --color-result-link-font: var(--ayeque-pink-soft);
+  --color-result-link-font-highlight: #fff7fb;
+  --color-result-link-visited-font: #d8b4fe;
+  --color-result-url-font: rgba(254, 226, 226, 0.78);
+  --color-result-publishdate-font: var(--ayeque-copy-muted);
+  --color-result-engines-font: var(--ayeque-copy-muted);
+  --color-result-search-url-border: var(--ayeque-border);
+  --color-result-search-url-font: var(--ayeque-copy);
+  --color-result-image-background: var(--ayeque-surface);
+  --color-result-image-span-font: var(--ayeque-copy);
+  --color-result-image-span-font-selected: #fff7fb;
+  --color-result-detail-background: #202020;
+  --color-result-detail-font: var(--ayeque-copy);
+  --color-result-detail-hr: var(--ayeque-border);
+  --color-result-detail-label-font: var(--ayeque-copy-muted);
+  --color-result-detail-link: var(--ayeque-pink-soft);
+  --color-result-keyvalue-col-table: #242424;
+  --color-result-keyvalue-even: var(--ayeque-surface);
+  --color-result-keyvalue-odd: #242424;
+  --color-result-vim-arrow: var(--ayeque-pink);
+  --color-result-vim-selected: rgba(236, 72, 153, 0.1);
+  --color-answer-background: rgba(45, 45, 45, 0.88);
+  --color-answer-font: var(--ayeque-copy);
+  --color-sidebar-background: rgba(45, 45, 45, 0.72);
+  --color-sidebar-border: var(--ayeque-border);
+  --color-sidebar-font: var(--ayeque-copy);
+  --color-url-font: var(--ayeque-pink-soft);
+  --color-url-visited-font: #d8b4fe;
+  --color-backtotop-background: var(--ayeque-surface-raised);
+  --color-backtotop-border: var(--ayeque-border);
+  --color-backtotop-font: var(--ayeque-pink-soft);
+  --color-settings-engine-description-font: var(--ayeque-copy-muted);
+  --color-settings-table-group-background: rgba(236, 72, 153, 0.05);
+  --color-settings-tr-hover: rgba(236, 72, 153, 0.08);
+  --color-toolkit-dialog-background: var(--ayeque-surface);
+  --color-toolkit-dialog-border: var(--ayeque-border);
+  --color-toolkit-engine-tooltip-background: var(--ayeque-surface);
+  --color-toolkit-engine-tooltip-border: var(--ayeque-border);
+  --color-toolkit-input-text-font: var(--ayeque-copy);
+  --color-toolkit-select-background: var(--ayeque-surface-raised);
+  --color-toolkit-select-background-hover: #4a4a4a;
+  --color-toolkit-select-border: var(--ayeque-border);
+  --color-toolkit-tabs-label-border: var(--ayeque-border);
+  --color-toolkit-tabs-section-border: var(--ayeque-border);
+  --color-toolkit-checkbox-input-border: var(--ayeque-pink);
+  --color-toolkit-checkbox-label-background: var(--ayeque-surface);
+  --color-toolkit-checkbox-label-border: var(--ayeque-border);
+  --color-toolkit-checkbox-onoff-off-background: var(--ayeque-surface-raised);
+  --color-toolkit-checkbox-onoff-off-mark-background: #737373;
+  --color-toolkit-checkbox-onoff-off-mark-color: var(--ayeque-copy);
+  --color-toolkit-checkbox-onoff-on-background: var(--ayeque-surface-raised);
+  --color-toolkit-checkbox-onoff-on-mark-background: var(--ayeque-pink);
+  --color-toolkit-checkbox-onoff-on-mark-color: #26121c;
+  --color-warning: #facc15;
+  --color-warning-background: rgba(113, 63, 18, 0.42);
+  --color-error: #f87171;
+  --color-error-background: rgba(127, 29, 29, 0.34);
+  --color-success: #86efac;
+  --color-success-background: rgba(20, 83, 45, 0.36);
+}
+
+html {
+  min-height: 100%;
+  background: var(--ayeque-bg);
+  font-size: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at -8rem -7rem, rgba(236, 72, 153, 0.08), transparent 34rem),
+    radial-gradient(circle at calc(100% + 10rem) calc(100% + 11rem), rgba(192, 38, 211, 0.07), transparent 38rem),
+    var(--ayeque-bg);
+  background-attachment: fixed;
+  color: var(--ayeque-copy);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.45;
+}
+
+::selection {
+  background: rgba(236, 72, 153, 0.35);
+  color: #fff7fb;
+}
+
+a {
+  color: var(--ayeque-pink-soft);
+  text-underline-offset: 0.18em;
+  transition: color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a:hover {
+  color: var(--ayeque-fuchsia);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ayeque-pink);
+  outline-offset: 3px;
+}
+
+#links_on_top {
+  display: none;
+}
+
+#links_on_top a {
+  border-radius: 999px;
+  color: var(--ayeque-copy-muted);
+}
+
+#links_on_top a:hover,
+#links_on_top a:focus-visible {
+  color: var(--ayeque-pink-soft);
+}
+
+.index .title {
+  min-height: 0;
+  margin-bottom: clamp(1.25rem, 4vw, 2.25rem);
+  background: none;
+}
+
+.ayeque-logo {
+  display: block;
+  width: clamp(7.5rem, 20vw, 11rem);
+  height: auto;
+  margin-inline: auto;
+  border-radius: 1.25rem;
+  filter: drop-shadow(0 18px 30px rgba(10, 10, 10, 0.22));
+}
+
+.ayeque-home-link {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  border-radius: 1.25rem;
+}
+
+.ayeque-wordmark {
+  display: block;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 0.65rem;
+  object-fit: contain;
+}
+
+.page_with_header .logo {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 0.8rem;
+  object-fit: contain;
+}
+
+#search_logo {
+  border-radius: 0.75rem;
+}
+
+.search_box {
+  border-radius: 1rem;
+  box-shadow: var(--color-search-shadow);
+}
+
+#q {
+  color: var(--ayeque-copy);
+}
+
+#q::placeholder {
+  color: rgba(254, 226, 226, 0.42);
+}
+
+#clear_search.empty {
+  display: none;
+}
+
+#main_index #clear_search {
+  display: none;
+}
+
+#send_search,
+#clear_search,
+button,
+input[type="submit"],
+input[type="button"] {
+  border-radius: 999px;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:where(button, input[type="submit"], input[type="button"]):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(236, 72, 153, 0.14);
+}
+
+.search_categories,
+.search_filters {
+  color: var(--ayeque-copy-muted);
+}
+
+.search_filters {
+  gap: 0.65rem;
+  padding-block: 0.2rem;
+}
+
+.search_filters select {
+  min-width: max-content;
+  margin-right: 0;
+  border-radius: 0.75rem;
+  background-color: var(--ayeque-surface-raised);
+}
+
+.search_filters select:hover,
+.search_filters select:focus {
+  background-color: #4a4a4a;
+}
+
+.category_button {
+  border-radius: 999px;
+}
+
+.category_checkbox:checked + .category_button,
+.category_button:hover {
+  color: var(--ayeque-pink-soft);
+}
+
+#results {
+  gap: clamp(0.75rem, 2vw, 1.1rem);
+}
+
+.result,
+#sidebar > :where(div, details),
+#answers,
+#suggestions,
+#corrections {
+  border-color: var(--ayeque-border);
+  border-radius: 1rem;
+}
+
+.result {
+  margin-block: 0 1rem;
+  padding: clamp(1.1rem, 2.5vw, 1.4rem);
+  border: 1px solid rgba(82, 82, 82, 0.72);
+  background: var(--color-result-background);
+  box-shadow: 0 14px 30px rgba(10, 10, 10, 0.12);
+}
+
+.result h3,
+.result h4 {
+  line-height: 1.28;
+}
+
+.result-content,
+.result .content {
+  color: rgba(254, 226, 226, 0.82);
+  line-height: 1.65;
+}
+
+.result-url,
+.result-engines,
+.published_date {
+  color: var(--ayeque-copy-muted);
+}
+
+.image_result,
+.result-images {
+  border-color: var(--ayeque-border);
+  border-radius: 0.85rem;
+  background: var(--ayeque-surface);
+}
+
+#pagination :where(button, input) {
+  border-color: var(--ayeque-border);
+}
+
+.page_number_current {
+  border-color: var(--ayeque-pink) !important;
+  color: var(--ayeque-pink-soft) !important;
+}
+
+#main_preferences h1,
+#main_info h1,
+#main_stats h1 {
+  color: var(--ayeque-pink);
+}
+
+#search_form fieldset,
+.tabs > section,
+.dialog-modal {
+  border-color: var(--ayeque-border);
+  border-radius: 1rem;
+  background: rgba(45, 45, 45, 0.72);
+}
+
+select,
+input[type="text"],
+input[type="search"],
+textarea {
+  border-color: var(--ayeque-border);
+  border-radius: 0.75rem;
+  background-color: var(--ayeque-surface-raised);
+  color: var(--ayeque-copy);
+}
+
+.dialog-error,
+.dialog-error-block,
+.dialog-warning,
+.dialog-warning-block {
+  border-radius: 1rem;
+}
+
+#sidebar .infobox {
+  padding: 1.25rem;
+  line-height: 1.5;
+}
+
+.ayeque-source-footer {
+  width: min(100% - 2rem, 82rem);
+  margin: 1.5rem auto 0;
+  padding: 0.9rem 1rem 1.25rem;
+  border-top: 1px solid rgba(82, 82, 82, 0.48);
+  color: var(--ayeque-copy-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.ayeque-source-footer p {
+  margin: 0;
+}
+
+.ayeque-source-footer a {
+  color: var(--ayeque-pink-soft);
+  font-weight: 600;
+}
+
+@media (min-width: 79.75em) {
+  .center-alignment-yes #main_results {
+    --center-page-width: min(82rem, calc(100vw - 4rem));
+  }
+}
+
+@media (max-width: 52rem) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .ayeque-logo {
+    width: 7rem;
+  }
+
+  .ayeque-wordmark {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .result {
+    border-radius: 0.8rem;
+    box-shadow: none;
+  }
+
+  .search_filters {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .search_filters select {
+    flex: 1 1 10rem;
+    min-width: 0;
+  }
+
+  #main_results div#results:not(.only_template_images, .image-detail-open) {
+    grid-template:
+      "corrections" min-content
+      "answers" min-content
+      "urls" 1fr
+      "sidebar" min-content
+      "pagination" min-content / 100%;
+  }
+
+  #sidebar .infobox img {
+    float: none;
+    width: auto;
+    max-width: min(100%, 22rem);
+    max-height: 15rem;
+    margin: 0 auto 1rem;
+  }
+}
+
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid Highlight;
+  }
+
+  .result,
+  #search_form fieldset,
+  .tabs > section {
+    border: 1px solid CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  :where(button, input[type="submit"], input[type="button"]):hover {
+    transform: none;
+  }
+}

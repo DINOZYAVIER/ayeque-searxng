@@ -1,0 +1,35 @@
+use_default_settings: true
+
+server:
+  secret_key: "synthetic-not-a-production-secret"
+  bind_address: "0.0.0.0"
+  port: 8080
+  base_url: "http://127.0.0.1:18088/"
+  limiter: false
+  public_instance: false
+  image_proxy: false
+  method: "GET"
+
+search:
+  formats:
+    - html
+    - json
+    - rss
+
+brand:
+  pwa_colors:
+    theme_color_light: "#ec4899"
+    background_color_light: "#262626"
+    theme_color_dark: "#ec4899"
+    background_color_dark: "#262626"
+    theme_color_black: "#ec4899"
+    background_color_black: "#262626"
+
+ui:
+  default_theme: simple
+  theme_args:
+    simple_style: dark
+
+preferences:
+  lock:
+    - simple_style
