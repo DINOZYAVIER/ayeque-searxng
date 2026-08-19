@@ -16,7 +16,7 @@ scripts/check.sh
 ## Build the runtime image
 
 ```sh
-docker build --tag ayeque-searxng:2026.3.29-aya29.1 .
+docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya29.2 .
 ```
 
 The build intentionally fails if any patched upstream template differs from
@@ -40,4 +40,3 @@ part of this repository and are not required to build the covered version.
 
 SearXNG and these modifications are distributed under the GNU Affero General
 Public License, version 3. See `LICENSE` and `NOTICE.md`.
-

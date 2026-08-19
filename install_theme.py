@@ -17,7 +17,7 @@ EXPECTED = {
     "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17",
 }
 
-SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.1"
+SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.2"
 
 BASE_STYLES = """  {% if rtl %}
   <link rel="stylesheet" href="{{ url_for('static', filename='sxng-rtl.min.css') }}" type="text/css" media="screen">
@@ -30,7 +30,7 @@ AYEQUE_STYLES = BASE_STYLES + """
 
 INDEX_TITLE = '<div class="index">\n    <div class="title"><h1>SearXNG</h1></div>'
 INDEX_BRAND = """<div class="index">
-    <div class="title"><a class="ayeque-home-link" href="https://ayeque.art/home" aria-label="AYEQUE home"><img class="ayeque-logo" src="{{ url_for('static', filename='img/ayeque-logo.webp') }}" alt="AYEQUE"></a></div>"""
+    <div class="title"><a class="ayeque-home-link" href="https://ayeque.art/" aria-label="AYEQUE home"><img class="ayeque-logo" src="{{ url_for('static', filename='img/ayeque-logo.webp') }}" alt="AYEQUE"></a></div>"""
 
 SEARCH_WORDMARK = """      <span hidden>SearXNG</span>
       {% include 'simple/searxng-wordmark.min.svg' without context %}"""
@@ -137,7 +137,7 @@ def install(root: Path) -> None:
         or search.count("ayeque-logo.webp") != 1
     ):
         raise RuntimeError("brand asset hooks are not unique")
-    if index.count('href="https://ayeque.art/home"') != 1:
+    if index.count('href="https://ayeque.art/"') != 1:
         raise RuntimeError("index.html: AYEQUE home link is not unique")
     if "pref_simple_style" in preferences:
         raise RuntimeError("simple_style preference remains visible")
