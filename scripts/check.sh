@@ -26,6 +26,8 @@ required = (
     "Dockerfile", "release.json", "install_theme.py", "ayeque.css",
     "ayeque-logo.webp", "favicon.png", "192.png", "512.png",
     "candidate-settings.yml", "scripts/check.sh",
+    "kiwix.py", "scripts/AGENTS.md", "scripts/test_kiwix_engine.py",
+    "security-requirements.in", "security-requirements.txt",
     "scripts/package_corresponding_source.sh",
 )
 missing = [name for name in required if not (root / name).is_file()]
@@ -43,6 +45,11 @@ if dockerfile.count('art.ayeque.theme.revision="' + release["theme_revision"] + 
     raise SystemExit("Dockerfile theme revision differs from release.json")
 if dockerfile.count('org.opencontainers.image.source="' + release["public_source"]["repository"] + '"') != 1:
     raise SystemExit("Dockerfile public source label differs from release.json")
+security = release.get("security_repairs", {})
+if dockerfile.count("FROM " + security.get("uv_image", "missing")) != 1:
+    raise SystemExit("Dockerfile uv image pin differs from release.json")
+if dockerfile.count('art.ayeque.searxng.security-dependencies="granian=2.7.4,lxml=6.1.0,urllib3=2.7.0"') != 1:
+    raise SystemExit("Dockerfile security dependency label differs")
 
 installer = (root / "install_theme.py").read_text(encoding="utf-8")
 for relative, digest in release["template_preimages"].items():
@@ -57,6 +64,48 @@ for name, expected in release["assets"].items():
     if actual != expected:
         raise SystemExit(f"asset hash mismatch for {name}: {actual}")
 
+if set(release.get("engines", {})) != {"kiwix.py"}:
+    raise SystemExit("release engine file set differs")
+for name, expected in release["engines"].items():
+    actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+    if actual != expected:
+        raise SystemExit(f"engine hash mismatch for {name}: {actual}")
+
+requirements = (root / "security-requirements.txt").read_text(encoding="utf-8")
+requirement_input = (root / "security-requirements.in").read_text(encoding="utf-8")
+if set(security.get("packages", {})) != {"granian", "lxml", "urllib3"}:
+    raise SystemExit("security repair package set differs")
+if security.get("scan") != {
+    "tool": "Trivy", "version": "0.72.0",
+    "database_updated_at": "2026-08-22T00:59:13.136195619Z",
+    "scanned_at": "2026-08-22", "high": 0, "critical": 0, "secrets": 0,
+}:
+    raise SystemExit("security repair scan evidence differs")
+for name, item in security["packages"].items():
+    marker = f'{name}=={item["version"]}'
+    digest = f'--hash=sha256:{item["wheel_sha256"]}'
+    if requirements.count(marker) != 1 or requirements.count(digest) != 1:
+        raise SystemExit(f"security lock differs for {name}")
+    if requirement_input.count(marker) != 1:
+        raise SystemExit(f"security input pin differs for {name}")
+if "--no-deps --require-hashes --no-cache" not in dockerfile.replace("\\\n", ""):
+    raise SystemExit("Dockerfile does not enforce the dependency-only hash gate")
+
+engine = (root / "kiwix.py").read_text(encoding="utf-8")
+for marker in (
+    'categories = ["wikipedia"]',
+    '"books.filter.lang": archive_lang',
+    '"books.filter.category": "wikipedia"',
+    '"format": "xml"',
+    '"soft_max_redirects"] = 0',
+    '"<!doctype"',
+    '"/wiki/content/"',
+):
+    if engine.count(marker) != 1:
+        raise SystemExit(f"Kiwix engine marker differs: {marker}")
+if "requests." in engine or "lxml" in engine:
+    raise SystemExit("Kiwix engine added an unbounded parser/network dependency")
+
 css = (root / "ayeque.css").read_text(encoding="utf-8")
 if re.search(r"(?:@import\s+|url\(\s*['\"]?)https?://", css, re.I):
     raise SystemExit("theme CSS contains a remote runtime dependency")
@@ -65,9 +114,9 @@ for marker in (":focus-visible", "prefers-reduced-motion", ".ayeque-source-foote
         raise SystemExit(f"theme CSS is missing {marker}")
 
 for path in root.rglob("*"):
-    if not path.is_file() or ".git" in path.parts or "dist" in path.parts:
+    if not path.is_file() or ".git" in path.parts or "dist" in path.parts or "__pycache__" in path.parts:
         continue
-    if path.suffix.lower() in {".png", ".webp"} or path.name == "LICENSE":
+    if path.suffix.lower() in {".png", ".webp", ".pyc"} or path.name == "LICENSE":
         continue
     text = path.read_text(encoding="utf-8", errors="strict")
     forbidden = (
@@ -91,3 +140,4 @@ PY
 
 "$PYTHON_BIN" "$REPO_ROOT/install_theme.py" --self-test
 printf 'installer_self_test=ok\n'
+"$PYTHON_BIN" "$REPO_ROOT/scripts/test_kiwix_engine.py"

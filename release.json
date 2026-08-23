@@ -1,12 +1,12 @@
 {
   "schema": "ayeque.searxng_theme_release.v2",
-  "theme_revision": "aya29.3",
-  "release_tag": "v2026.3.29-aya29.3",
-  "image_tag": "ayeque-searxng:2026.3.29-7ac4ff39f-aya29.3",
+  "theme_revision": "aya34.1",
+  "release_tag": "v2026.3.29-aya34.1",
+  "image_tag": "ayeque-searxng:2026.3.29-7ac4ff39f-aya34.1",
   "public_source": {
     "repository": "https://github.com/dinozyavier/ayeque-searxng",
-    "release": "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya29.3",
-    "archive_name": "ayeque-searxng-v2026.3.29-aya29.3-source.tar.gz"
+    "release": "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya34.1",
+    "archive_name": "ayeque-searxng-v2026.3.29-aya34.1-source.tar.gz"
   },
   "upstream": {
     "image": "searxng/searxng@sha256:4d7ed8b7035ecf827bd901ba6d32f5c32d8119bc09bb3cdafeb0ce58f1b951c1",
@@ -16,6 +16,39 @@
     "source_archive_url": "https://github.com/searxng/searxng/archive/7ac4ff39fee4cdde223dbab6a83af9c26b56366e.tar.gz",
     "source_archive_sha256": "0a99d5cb8fbd8b141507d7fa8d098cfdc5b6ee676ea2ae2825a8280a9b957073"
   },
+  "security_repairs": {
+    "uv_version": "0.8.22",
+    "uv_image": "ghcr.io/astral-sh/uv@sha256:ae1ba4db410fbe1d9eaf16c51add8e7608b271ebbb69bd58a56e80384fd190aa",
+    "packages": {
+      "granian": {
+        "version": "2.7.4",
+        "wheel": "granian-2.7.4-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "wheel_bytes": 6849667,
+        "wheel_sha256": "d7100a6a6d3835fec2a207fef536a259dd42d9efdb5c46933cf6f9d55d5bfaad"
+      },
+      "lxml": {
+        "version": "6.1.0",
+        "wheel": "lxml-6.1.0-cp314-cp314-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl",
+        "wheel_bytes": 5239310,
+        "wheel_sha256": "fe022f20bc4569ec66b63b3fb275a3d628d9d32da6326b2982584104db6d3086"
+      },
+      "urllib3": {
+        "version": "2.7.0",
+        "wheel": "urllib3-2.7.0-py3-none-any.whl",
+        "wheel_bytes": 131087,
+        "wheel_sha256": "9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"
+      }
+    },
+    "scan": {
+      "tool": "Trivy",
+      "version": "0.72.0",
+      "database_updated_at": "2026-08-22T00:59:13.136195619Z",
+      "scanned_at": "2026-08-22",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    }
+  },
   "template_preimages": {
     "simple/base.html": "6e70d235e7297a32c223441ce2e22a7f2569959d164f251c4c4ead00907ac40d",
     "simple/index.html": "91d2065c452099c023ab1910885bacdab9aed6dc049e954bf1ac96eca679fd96",
@@ -23,7 +56,10 @@
     "simple/search.html": "5544f212c49bf5d1a3eb5dc664985f69ca6650d60db644b11d08fc61e99336d5",
     "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17"
   },
-  "derived_image_id": "sha256:78159f4bea47c2c149f5fb7a2d819d6356de6faf44b54b524e31d3afde9df1ff",
+  "derived_image_id": "sha256:a3d4d45da80498ca06306b82241409f9eeaacdefdd84d9caec00ad45e90025b4",
+  "engines": {
+    "kiwix.py": "72fcd86717aaae7623e1b14e38bf8ba27775d7daea1d94f68a4e9f782d8747e0"
+  },
   "assets": {
     "ayeque.css": "6fc19fb0394d42b00764b2a086f1f912b41980d64c4c780773a7ec2659524f30",
     "ayeque-logo.webp": "4246628b04ec51ed9497d898c20c471ee29f0097bd07c421769b193ae3e24f21",

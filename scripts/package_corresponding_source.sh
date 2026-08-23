@@ -61,10 +61,13 @@ tar -xzf "$upstream_archive" -C "$bundle_root/upstream-searxng" --strip-componen
 for path in \
   .gitignore AGENTS.md README.md LICENSE NOTICE.md Dockerfile release.json \
   install_theme.py ayeque.css ayeque-logo.webp favicon.png 192.png 512.png \
-  candidate-settings.yml; do
+  candidate-settings.yml kiwix.py security-requirements.in security-requirements.txt; do
   cp -a "$REPO_ROOT/$path" "$bundle_root/ayeque-overlay/$path"
 done
 cp -a "$REPO_ROOT/scripts/check.sh" "$bundle_root/ayeque-overlay/scripts/check.sh"
+cp -a "$REPO_ROOT/scripts/AGENTS.md" "$bundle_root/ayeque-overlay/scripts/AGENTS.md"
+cp -a "$REPO_ROOT/scripts/test_kiwix_engine.py" \
+  "$bundle_root/ayeque-overlay/scripts/test_kiwix_engine.py"
 cp -a "$REPO_ROOT/scripts/package_corresponding_source.sh" \
   "$bundle_root/ayeque-overlay/scripts/package_corresponding_source.sh"
 

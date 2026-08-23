@@ -7,6 +7,13 @@ The current release derives from SearXNG `2026.3.29+7ac4ff39f` at commit
 `7ac4ff39fee4cdde223dbab6a83af9c26b56366e`. The upstream image, source archive,
 template preimages and local assets are pinned in `release.json`.
 
+The AYA-34 overlay also installs the bounded `kiwix.py` engine used for the
+private four-language Wikipedia library. Runtime addresses and production
+settings are deliberately excluded from this public source repository.
+The derived image applies three exact hash-locked dependency-only upgrades
+recorded in `security-requirements.txt`; the upstream SearXNG revision and
+templates remain unchanged.
+
 ## Verify
 
 ```sh
@@ -16,7 +23,7 @@ scripts/check.sh
 ## Build the runtime image
 
 ```sh
-docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya29.3 .
+docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya34.1 .
 ```
 
 The build intentionally fails if any patched upstream template differs from

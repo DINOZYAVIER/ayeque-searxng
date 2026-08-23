@@ -8,10 +8,16 @@ exact SearXNG release.
 - `Dockerfile` derives the runtime from the exact upstream image digest.
 - `release.json` records upstream, theme, public-source and asset identities.
 - `install_theme.py` applies fail-closed template changes and the source offer.
+- `kiwix.py` is the bounded XML adapter for four private Kiwix Wikipedia
+  engines; it must never expose its internal origin in result URLs.
+- `security-requirements.in` and `security-requirements.txt` pin the narrow
+  dependency-only repairs applied to the unchanged upstream image. Keep every
+  wheel hash locked and never add an unreviewed transitive upgrade.
 - `ayeque.css` and the PNG/WebP files are locally served presentation assets.
 - `candidate-settings.yml` is synthetic test configuration, never production
   configuration.
 - `scripts/check.sh` validates the repository and template patch contract.
+- `scripts/test_kiwix_engine.py` runs synthetic adapter security/URL tests.
 - `scripts/package_corresponding_source.sh` creates the complete source release
   containing the exact upstream SearXNG source and this overlay.
 
@@ -26,6 +32,7 @@ exact SearXNG release.
 - Keep the patch narrow and fail closed when an upstream template changes.
 - Keep the visible `Source` offer present on every page using `simple/base.html`.
 - Do not add JavaScript, remote fonts, analytics or external runtime assets.
+- Keep Kiwix search on the public `/search` XML API, private HTTP addresses,
+  fixed language aliases and same-origin HTTPS result URLs.
 - Publish the generated complete source archive and checksum with every tag
   used by a deployed image.
-
