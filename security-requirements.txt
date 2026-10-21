@@ -1,7 +1,3 @@
-# CPython 3.14 / Linux x86-64 wheels selected for the pinned SearXNG runtime.
-granian==2.7.4 \
-    --hash=sha256:d7100a6a6d3835fec2a207fef536a259dd42d9efdb5c46933cf6f9d55d5bfaad
-lxml==6.1.0 \
-    --hash=sha256:fe022f20bc4569ec66b63b3fb275a3d628d9d32da6326b2982584104db6d3086
-urllib3==2.7.0 \
-    --hash=sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897
+# CPython 3.14 pure-Python wheel selected for the pinned SearXNG runtime.
+certifi==2026.10.19 \
+    --hash=sha256:42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b

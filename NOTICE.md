@@ -6,8 +6,8 @@ This work modifies SearXNG, copyright its respective contributors, licensed
 under the GNU Affero General Public License version 3.
 
 - Upstream repository: <https://github.com/searxng/searxng>
-- Upstream revision: `7ac4ff39fee4cdde223dbab6a83af9c26b56366e`
-- Upstream version: `2026.3.29+7ac4ff39f`
+- Upstream revision: `81371861f67226091d1c4df2e3908a11d3b54eb9`
+- Upstream version: `2026.10.19+81371861f`
 
 The complete corresponding-source release contains the exact upstream source
 for that revision and preserves its notices and history files.

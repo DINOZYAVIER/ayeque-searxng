@@ -48,7 +48,7 @@ if dockerfile.count('org.opencontainers.image.source="' + release["public_source
 security = release.get("security_repairs", {})
 if dockerfile.count("FROM " + security.get("uv_image", "missing")) != 1:
     raise SystemExit("Dockerfile uv image pin differs from release.json")
-if dockerfile.count('art.ayeque.searxng.security-dependencies="granian=2.7.4,lxml=6.1.0,urllib3=2.7.0"') != 1:
+if dockerfile.count('art.ayeque.searxng.security-dependencies="certifi=2026.10.19"') != 1:
     raise SystemExit("Dockerfile security dependency label differs")
 
 installer = (root / "install_theme.py").read_text(encoding="utf-8")
@@ -73,12 +73,12 @@ for name, expected in release["engines"].items():
 
 requirements = (root / "security-requirements.txt").read_text(encoding="utf-8")
 requirement_input = (root / "security-requirements.in").read_text(encoding="utf-8")
-if set(security.get("packages", {})) != {"granian", "lxml", "urllib3"}:
+if set(security.get("packages", {})) != {"certifi"}:
     raise SystemExit("security repair package set differs")
 if security.get("scan") != {
     "tool": "Trivy", "version": "0.72.0",
-    "database_updated_at": "2026-08-22T00:59:13.136195619Z",
-    "scanned_at": "2026-08-22", "high": 0, "critical": 0, "secrets": 0,
+    "database_updated_at": "2026-10-21T19:18:22.876313144Z",
+    "scanned_at": "2026-10-21", "high": 0, "critical": 0, "secrets": 0,
 }:
     raise SystemExit("security repair scan evidence differs")
 for name, item in security["packages"].items():

@@ -1,4 +1,2 @@
-# Fixed dependency-only repairs for HIGH findings in the pinned upstream image.
-granian==2.7.4
-lxml==6.1.0
-urllib3==2.7.0
+# Fixed dependency-only repair for the CRITICAL finding in the pinned upstream image.
+certifi==2026.10.19

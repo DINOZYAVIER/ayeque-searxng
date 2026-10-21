@@ -10,14 +10,14 @@ from pathlib import Path
 
 TEMPLATE_ROOT = Path("/usr/local/searxng/searx/templates")
 EXPECTED = {
-    "simple/base.html": "6e70d235e7297a32c223441ce2e22a7f2569959d164f251c4c4ead00907ac40d",
+    "simple/base.html": "7f45db381f1995ad1ca0c5026dba58c45f0e0011f44e34e2f5702b4359b604d4",
     "simple/index.html": "91d2065c452099c023ab1910885bacdab9aed6dc049e954bf1ac96eca679fd96",
     "simple/page_with_header.html": "5cfc88b74e55b22b7d69be53e6fb2b88991203d7ea6b699b55009ee06246c9dc",
-    "simple/search.html": "5544f212c49bf5d1a3eb5dc664985f69ca6650d60db644b11d08fc61e99336d5",
+    "simple/search.html": "5f75a80bed5c8d1543c99ad635b9dd2f53e65c0dcc8f8f7d2e27fe2010ace287",
     "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17",
 }
 
-SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.3.29-aya34.1"
+SOURCE_RELEASE_URL = "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.10.19-aya35"
 
 BASE_STYLES = """  {% if rtl %}
   <link rel="stylesheet" href="{{ url_for('static', filename='sxng-rtl.min.css') }}" type="text/css" media="screen">

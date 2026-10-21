@@ -3,8 +3,8 @@
 This repository contains the AYEQUE theme and reproducible modification layer
 for the SearXNG instance at `search.ayeque.art`.
 
-The current release derives from SearXNG `2026.3.29+7ac4ff39f` at commit
-`7ac4ff39fee4cdde223dbab6a83af9c26b56366e`. The upstream image, source archive,
+The current release derives from SearXNG `2026.10.19+81371861f` at commit
+`81371861f67226091d1c4df2e3908a11d3b54eb9`. The upstream image, source archive,
 template preimages and local assets are pinned in `release.json`.
 
 The AYA-34 overlay also installs the bounded `kiwix.py` engine used for the
@@ -23,7 +23,7 @@ scripts/check.sh
 ## Build the runtime image
 
 ```sh
-docker build --tag ayeque-searxng:2026.3.29-7ac4ff39f-aya34.1 .
+docker build --tag ayeque-searxng:2026.10.19-81371861f-aya35 .
 ```
 
 The build intentionally fails if any patched upstream template differs from
