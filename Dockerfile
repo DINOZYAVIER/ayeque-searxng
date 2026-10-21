@@ -6,10 +6,10 @@ LABEL art.ayeque.searxng.upstream-version="2026.10.19+81371861f" \
       art.ayeque.searxng.upstream-revision="81371861f67226091d1c4df2e3908a11d3b54eb9" \
       art.ayeque.searxng.upstream-digest="sha256:5ed0323b5f5f8701264ef65e239a2bd83cb57098f2b971fa30bf79c06eeae271" \
       art.ayeque.searxng.security-dependencies="certifi=2026.10.19" \
-      art.ayeque.theme.revision="aya35" \
+      art.ayeque.theme.revision="aya35.1" \
       org.opencontainers.image.source="https://github.com/dinozyavier/ayeque-searxng" \
       org.opencontainers.image.licenses="AGPL-3.0-only" \
-      org.opencontainers.image.version="2026.10.19-aya35"
+      org.opencontainers.image.version="2026.10.19-aya35.1"
 
 COPY ayeque.css /usr/local/searxng/searx/static/themes/simple/ayeque.css
 COPY ayeque-logo.webp /usr/local/searxng/searx/static/themes/simple/img/ayeque-logo.webp

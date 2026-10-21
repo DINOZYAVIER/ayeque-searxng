@@ -1,12 +1,12 @@
 {
   "schema": "ayeque.searxng_theme_release.v2",
-  "theme_revision": "aya35",
-  "release_tag": "v2026.10.19-aya35",
-  "image_tag": "ayeque-searxng:2026.10.19-81371861f-aya35",
+  "theme_revision": "aya35.1",
+  "release_tag": "v2026.10.19-aya35.1",
+  "image_tag": "ayeque-searxng:2026.10.19-81371861f-aya35.1",
   "public_source": {
     "repository": "https://github.com/dinozyavier/ayeque-searxng",
-    "release": "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.10.19-aya35",
-    "archive_name": "ayeque-searxng-v2026.10.19-aya35-source.tar.gz"
+    "release": "https://github.com/dinozyavier/ayeque-searxng/releases/tag/v2026.10.19-aya35.1",
+    "archive_name": "ayeque-searxng-v2026.10.19-aya35.1-source.tar.gz"
   },
   "upstream": {
     "image": "searxng/searxng@sha256:5ed0323b5f5f8701264ef65e239a2bd83cb57098f2b971fa30bf79c06eeae271",
@@ -44,9 +44,9 @@
     "simple/search.html": "5f75a80bed5c8d1543c99ad635b9dd2f53e65c0dcc8f8f7d2e27fe2010ace287",
     "simple/preferences/theme.html": "c1aae439722d068bdf95c0da792d9813a025fe3839d116b34af6c7020cee9b17"
   },
-  "derived_image_id": "sha256:5ac2ce996f51c8625bc578cadca773dab4c0af930061953f0dcd3c701169439b",
+  "derived_image_id": "sha256:77776cd6f1360ca8538deb7c33cddfbc9da4373b1e11575faa5cf490bbf65077",
   "engines": {
-    "kiwix.py": "72fcd86717aaae7623e1b14e38bf8ba27775d7daea1d94f68a4e9f782d8747e0"
+    "kiwix.py": "f8ef14df3253fe795fb22c809e0091b446bb62db56bd45f3a3d3f3700c165841"
   },
   "assets": {
     "ayeque.css": "14cee9af00afad01f46f11b18ef37f6d5b2b5474f93578f963edc97822bb5bb9",

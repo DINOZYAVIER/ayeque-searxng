@@ -1,9 +1,15 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-"""Kiwix XML search adapter for the private AYEQUE Wikipedia library."""
+"""Kiwix search adapter for the private AYEQUE Wikipedia library.
+
+Two modes, one per engine: `search` (the full-text `/search` XML) and
+`suggest` (the `/suggest` JSON, the titles that start with the query).
+"""
 
 from __future__ import annotations
 
+import html
 import ipaddress
+import json
 import re
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -15,7 +21,7 @@ about = {
     "official_api_documentation": "https://kiwix-tools.readthedocs.io/en/latest/kiwix-serve.html#search",
     "use_official_api": True,
     "require_api_key": False,
-    "results": "XML-RSS",
+    "results": "XML-RSS, JSON",
 }
 
 categories = ["wikipedia"]
@@ -27,9 +33,13 @@ base_url = ""
 public_base_url = ""
 archive_lang = ""
 archive_alias = ""
+# `search` (full text, XML) or `suggest` (title prefixes, JSON).
+mode = "search"
 result_count = 10
 max_response_bytes = 262_144
 
+_MODES = ("search", "suggest")
+_CONTENT_PREFIX = "/wiki/content/"
 _LANGUAGES = {"eng": "en", "fra": "fr", "rus": "ru", "ukr": "uk"}
 _WHITESPACE = re.compile(r"\s+")
 
@@ -75,29 +85,43 @@ def _language_contract() -> str:
 
 
 def request(query, params):
-    """Build one bounded public `/search` request for the fixed archive language."""
+    """Build one bounded public `/search` or `/suggest` request for the fixed archive."""
 
     _internal_base()
     _public_origin()
     _language_contract()
+    if mode not in _MODES:
+        raise ValueError("Kiwix mode must be search or suggest")
     if not isinstance(result_count, int) or not 1 <= result_count <= 20:
         raise ValueError("Kiwix result_count is outside the accepted bound")
     page = params.get("pageno", 1)
     if not isinstance(page, int) or page < 1 or page > 100:
         raise ValueError("Kiwix page is outside the accepted bound")
-    args = {
-        "pattern": query,
-        "books.filter.lang": archive_lang,
-        "books.filter.category": "wikipedia",
-        "format": "xml",
-        "pageLength": result_count,
-        "start": (page - 1) * result_count,
-    }
-    params["url"] = f"{_internal_base()}/search?{urllib.parse.urlencode(args)}"
+    if mode == "suggest":
+        # The titles that start with the query, in the one fixed book.
+        args = {
+            "content": archive_alias,
+            "term": query,
+            "count": result_count,
+            "start": (page - 1) * result_count,
+        }
+        params["url"] = f"{_internal_base()}/suggest?{urllib.parse.urlencode(args)}"
+        accept = "application/json"
+    else:
+        args = {
+            "pattern": query,
+            "books.filter.lang": archive_lang,
+            "books.filter.category": "wikipedia",
+            "format": "xml",
+            "pageLength": result_count,
+            "start": (page - 1) * result_count,
+        }
+        params["url"] = f"{_internal_base()}/search?{urllib.parse.urlencode(args)}"
+        accept = "application/rss+xml, application/xml;q=0.9"
     params["raise_for_httperror"] = True
     params["soft_max_redirects"] = 0
     headers = params.setdefault("headers", {})
-    headers["Accept"] = "application/rss+xml, application/xml;q=0.9"
+    headers["Accept"] = accept
     return params
 
 
@@ -112,7 +136,7 @@ def _stable_result_url(raw: str) -> str | None:
     parsed = urllib.parse.urlsplit(raw)
     if parsed.scheme or parsed.netloc or parsed.query or parsed.fragment:
         return None
-    prefix = "/wiki/content/"
+    prefix = _CONTENT_PREFIX
     if not parsed.path.startswith(prefix) or "\\" in parsed.path or "//" in parsed.path:
         return None
     remainder = parsed.path[len(prefix) :]
@@ -137,7 +161,7 @@ def _stable_result_url(raw: str) -> str | None:
 
 
 def response(resp):
-    """Parse bounded Kiwix RSS/XML without DTD or entity processing."""
+    """Parse a bounded Kiwix RSS/XML or `/suggest` JSON answer."""
 
     if resp.status_code == 404:
         return []
@@ -159,6 +183,8 @@ def response(resp):
         text = data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise RuntimeError("Kiwix search response is not UTF-8") from exc
+    if mode == "suggest":
+        return _suggest_results(text)
     lowered = text.lower()
     if "<!doctype" in lowered or "<!entity" in lowered:
         raise RuntimeError("Kiwix search response contains a forbidden DTD")
@@ -186,4 +212,34 @@ def response(resp):
                 "content": _text(item.find("description"), 4096),
             }
         )
+    return results
+
+
+def _suggest_results(text: str) -> list:
+    """The title matches of a `/suggest` JSON list, as same-origin results."""
+
+    try:
+        entries = json.loads(text)
+    except ValueError as exc:
+        raise RuntimeError("Kiwix suggest response is malformed JSON") from exc
+    if not isinstance(entries, list):
+        raise RuntimeError("Kiwix suggest response is not a list")
+    results = []
+    for entry in entries:
+        # The last entry of a list is often "containing '...'", a full-text
+        # offer and not an article: only `path` entries are articles.
+        if not isinstance(entry, dict) or entry.get("kind") != "path":
+            continue
+        value, path = entry.get("value"), entry.get("path")
+        if not isinstance(value, str) or not isinstance(path, str):
+            continue
+        title = _WHITESPACE.sub(" ", html.unescape(value)).strip()[:512]
+        stable_url = _stable_result_url(
+            f"{_CONTENT_PREFIX}{archive_alias}/{urllib.parse.quote(path, safe='/')}"
+        )
+        if not title or stable_url is None:
+            continue
+        results.append({"url": stable_url, "title": title, "content": ""})
+        if len(results) == result_count:
+            break
     return results

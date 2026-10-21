@@ -97,6 +97,7 @@ for marker in (
     '"books.filter.lang": archive_lang',
     '"books.filter.category": "wikipedia"',
     '"format": "xml"',
+    '"content": archive_alias',
     '"soft_max_redirects"] = 0',
     '"<!doctype"',
     '"/wiki/content/"',
